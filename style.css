@@ -31,6 +31,8 @@ h1 {
     flex: 1 0 calc(100% / 16); /* Divide evenly into 16 squares per row */
     border: 1px solid #ccc;
     background-color: #fff;
+    transition: background-color 0.2s ease; /* Smooth color change */
+
 }
 .grid-square:hover {
     background-color: #c1c1c1;

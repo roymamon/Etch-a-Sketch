@@ -37,3 +37,17 @@ h1 {
 .grid-square:hover {
     background-color: #c1c1c1;
 }
+button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(231, 231, 231);
+}

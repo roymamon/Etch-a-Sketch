@@ -9,8 +9,21 @@ function createGrid(size) {
         const square = document.createElement("div");
         square.classList.add("grid-square");
         square.style.flex = `1 0 ${squareSize}`; // Dynamically set flex property
+        // Add hover effect for random colors
+        square.addEventListener("mouseover", () => {
+            const randomColor = getRandomRGB();
+            square.style.backgroundColor = randomColor;
+        });
         container.appendChild(square);
     }
+}
+
+// Function to generate random RGB color
+function getRandomRGB() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function resizeGrid() {

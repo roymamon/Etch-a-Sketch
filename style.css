@@ -33,9 +33,6 @@ h1 {
     transition: background-color 0.2s ease;
 }
 
-.grid-square:hover {
-    background-color: #c1c1c1;
-}
 
 button {
     background-color: white;

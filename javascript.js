@@ -9,11 +9,17 @@ function createGrid(size) {
         const square = document.createElement("div");
         square.classList.add("grid-square");
         square.style.flex = `1 0 ${squareSize}`; // Dynamically set flex property
-        // Add hover effect for random colors
+        square.dataset.darken = 0; // Initial darkening level at 0%
+
+        // Add hover effect for random colors and darkening
         square.addEventListener("mouseover", () => {
-            const randomColor = getRandomRGB();
-            square.style.backgroundColor = randomColor;
+            if (square.style.backgroundColor === "") {
+                // Set a random RGB color initially
+                square.style.backgroundColor = getRandomRGB();
+            }
+            darkenSquare(square);
         });
+
         container.appendChild(square);
     }
 }
@@ -24,6 +30,22 @@ function getRandomRGB() {
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+function darkenSquare(square) {
+    let currentDarken = parseInt(square.dataset.darken); // Get current darken level
+    if (currentDarken < 10) {
+        currentDarken += 1; // Increase darken level by 10%
+        square.dataset.darken = currentDarken;
+
+        // Extract the current RGB color
+        const rgb = square.style.backgroundColor.match(/\d+/g);
+        const [r, g, b] = rgb.map((value) =>
+            Math.max(0, Math.floor(value * (1 - 0.1))) // Darken each channel by 10%
+        );
+
+        square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
 }
 
 function resizeGrid() {
